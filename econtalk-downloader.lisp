@@ -1,7 +1,6 @@
 (ql:quickload '("dexador" "cl-ppcre" "trivial-download"))
 
 (defparameter *download-dir* #P"~/econtalk-downloads/")
-
 (defparameter *rss-url* "https://feeds.simplecast.com/wgl4xEgL")
 (defparameter *request* (dex:get *rss-url*))
 

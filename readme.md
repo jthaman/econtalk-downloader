@@ -8,10 +8,4 @@ Tested with SBCL and requires Quicklisp.
 
 ## How to run
 
-First, install sbcl and Quicklisp, then
-
-```
-git clone https://github.com/jthaman/econtalk-downloader.git
-cd econtalk-downloader
-sbcl --script econtalk-downloader.lisp
-```
+First, install sbcl and Quicklisp, then evaluate econtalk-downloader.lisp in your lisp environment.
