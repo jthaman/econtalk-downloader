@@ -1,6 +1,6 @@
-(ql:quickload '("dexador" "lquery" "lparallel" "cxml" "cl-ppcre" "trivial-download"))
+(ql:quickload '("dexador" "cl-ppcre" "trivial-download"))
 
-(defparameter *download-dir* #P"/home/john/Downloads/")
+(defparameter *download-dir* #P"~/econtalk-downloads/")
 
 (defparameter *rss-url* "https://feeds.simplecast.com/wgl4xEgL")
 (defparameter *request* (dex:get *rss-url*))
@@ -12,8 +12,7 @@
   (cl-ppcre:all-matches-as-strings "<itunes:title>.*</itunes:title>"*request*))
 
 (loop for i from 0 to (- (length *filenames*) 1)
-      do
-         (setf (nth i *filenames*)
+      do (setf (nth i *filenames*)
                (cl-ppcre:regex-replace "<itunes:title>" (nth i *filenames*) ""))
          (setf (nth i *filenames*)
                (cl-ppcre:regex-replace "</itunes:title>" (nth i *filenames*) ""))
@@ -21,7 +20,8 @@
                (concatenate 'string (nth i *filenames*) ".mp3")))
 
 (loop for i from 0 to (- (length *filenames*) 1)
-      do
-         (unless
+      do (unless
              (probe-file (merge-pathnames *download-dir* (nth i *filenames*)))
-           (trivial-download:download (nth i *mp3s*) (nth i *filenames*))))
+           (print "downloading...")
+           (trivial-download:download (nth 0 *mp3s*)
+                                      (merge-pathnames *download-dir* (nth i *filenames*)))))
