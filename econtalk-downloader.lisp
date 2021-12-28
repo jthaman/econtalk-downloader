@@ -22,5 +22,5 @@
       do (unless
              (probe-file (merge-pathnames *download-dir* (nth i *filenames*)))
            (print "downloading...")
-           (trivial-download:download (nth 0 *mp3s*)
+           (trivial-download:download (nth i *mp3s*)
                                       (merge-pathnames *download-dir* (nth i *filenames*)))))
