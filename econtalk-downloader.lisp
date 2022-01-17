@@ -21,6 +21,6 @@
 (loop for i from 0 to (- (length *filenames*) 1)
       do (unless
              (probe-file (merge-pathnames *download-dir* (nth i *filenames*)))
-           (print "downloading...")
+           (format t "downloading ~d of ~d ~%" (1+ i) (length *filenames*))
            (trivial-download:download (nth i *mp3s*)
                                       (merge-pathnames *download-dir* (nth i *filenames*)))))
